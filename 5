@@ -1,0 +1,57 @@
+#include
+#include
+#include
+#include
+#include
+
+int main() {
+std::setlocale(LC_ALL, "Ukrainian");
+srand(static_cast(time(0)));
+
+int size, choice;
+std::cout << "Введіть розмір масиву: ";
+std::cin >> size;
+
+if (size < 2) {
+    std::cout << "Для перевірки потрібно мінімум 2 елементи!" << std::endl;
+    return 1;
+}
+
+std::cout << "Оберіть тип перевірки:\n1 — На зростання\n2 — На спадання\nВаш вибір: ";
+std::cin >> choice;
+
+if (choice != 1 && choice != 2) {
+    std::cout << "Невірний вибір режиму!" << std::endl;
+    return 1;
+}
+
+std::vector<int> array(size);
+std::cout << "\nЗгенерований масив: ";
+for (int i = 0; i < size; i++) {
+    array[i] = rand() % 50;
+    std::cout << array[i] << " ";
+}
+std::cout << std::endl;
+
+bool isCorrect = true;
+
+if (choice == 1) {
+    for (int i = 0; i < size - 1; i++) {
+        if (array[i] > array[i + 1]) {
+            isCorrect = false;
+            break;
+        }
+    }
+    std::cout << "Результат: Масив " << (isCorrect ? "Є" : "НЕ Є") << " зростаючим." << std::endl;
+} else {
+    for (int i = 0; i < size - 1; i++) {
+        if (array[i] < array[i + 1]) {
+            isCorrect = false;
+            break;
+        }
+    }
+    std::cout << "Результат: Масив " << (isCorrect ? "Є" : "НЕ Є") << " спадним." << std::endl;
+}
+
+return 0;
+}
