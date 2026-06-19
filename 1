@@ -1,0 +1,32 @@
+#include
+#include
+#include
+#include
+
+int main() {
+std::setlocale(LC_ALL, "Ukrainian");
+srand(static_cast(time(0)));
+
+const int SIZE = 12;
+int array[SIZE];
+int evenCount = 0;
+int oddCount = 0;
+
+std::cout << "Згенерований масив: ";
+for (int i = 0; i < SIZE; i++) {
+    array[i] = rand() % 100;
+    std::cout << array[i] << " ";
+
+    if (array[i] % 2 == 0) {
+        evenCount++;
+    } else {
+        oddCount++;
+    }
+}
+
+std::cout << "\n\nРезультат:" << std::endl;
+std::cout << "Кількість парних чисел: " << evenCount << std::endl;
+std::cout << "Кількість непарних чисел: " << oddCount << std::endl;
+
+return 0;
+}
