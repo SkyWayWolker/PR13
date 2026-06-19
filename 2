@@ -1,0 +1,45 @@
+#include
+#include
+#include
+#include
+
+int main() {
+std::setlocale(LC_ALL, "Ukrainian");
+int n;
+
+std::cout << "Введіть кількість кутів багатокутника (n >= 3): ";
+std::cin >> n;
+
+if (n < 3) {
+    std::cout << "Помилка: багатокутник повинен мати принаймні 3 кути!" << std::endl;
+    return 1;
+}
+
+std::vector<double> angles(n);
+double currentSum = 0;
+
+std::cout << "Введіть значення кутів у градусах:\n";
+for (int i = 0; i < n; i++) {
+    std::cout << "Кут " << i + 1 << ": ";
+    std::cin >> angles[i];
+    
+    if (angles[i] <= 0 || angles[i] >= 180) {
+        std::cout << "Помилка: кут має бути в межах від 0 до 180 градусів!" << std::endl;
+        return 1;
+    }
+    currentSum += angles[i];
+}
+
+double theoreticalSum = 180.0 * (n - 2);
+
+std::cout << "\nФактична сума кутів: " << currentSum << "°" << std::endl;
+std::cout << "Теоретична сума для " << n << "-кутника: " << theoreticalSum << "°" << std::endl;
+
+if (std::abs(currentSum - theoreticalSum) < 1e-5) {
+    std::cout << "Результат: Багатокутник з такими кутами МОЖЕ існувати." << std::endl;
+} else {
+    std::cout << "Результат: Багатокутник з такими кутами НЕ може існувати." << std::endl;
+}
+
+return 0;
+}
